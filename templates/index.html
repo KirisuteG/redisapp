@@ -1,0 +1,33 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<form action="/" method="POST">
+    <input type="text" name="temperature" placeholder="Temperature">
+    <button type="submit">
+        Save
+    </button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <td>Time</td>
+            <td>Temperature</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dato in data %}
+        <tr>
+            <td>{{dato.1}}</td>
+            <td>{{dato.2}}</td>
+            <td>
+                <a href="/delete/{{dato.0}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
